@@ -8,6 +8,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Admin from './Components/Admin/Admin';
 
 
 function App() {
@@ -23,11 +24,11 @@ function App() {
           <Route exact path="/">
             <Header></Header>
           </Route>
-
+          <Route path="/admin">
+            <Admin></Admin>
+          </Route>
 
         </Switch>
-
-
 
       </Router>
 
