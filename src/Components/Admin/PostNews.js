@@ -17,11 +17,11 @@ const PostNews = () => {
                     <div className="d-flex jus">
                         <div className="p-5 border w-100">
                             <h5>News Title:</h5>
-                            <input defaultValue="Enter Name" type="text" {...register("name")} />
+                            <input defaultValue="News Title" type="text" {...register("Title")} />
                         </div>
                         <div className="p-5 border">
                             <h5>Reporter Name:</h5>
-                            <input defaultValue="Enter Name" type="text" {...register("wight")} />
+                            <input defaultValue="Repoter Name" type="text" {...register("ReporterName")} />
                         </div>
                         <div className="p-5 border">
                             <h5>Select Image:</h5>
@@ -34,7 +34,7 @@ const PostNews = () => {
 
                         <div className="p-5 border w-100">
                             <h5>Full Report:</h5>
-                            <textarea style={{ width: "800px" }} defaultValue="" type="text"{...register("price")} />
+                            <textarea style={{ width: "800px" }} defaultValue="Full Report" type="text"{...register("FullReport")} />
                         </div>
 
                     </div>
