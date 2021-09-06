@@ -13,7 +13,7 @@ import Admin from './Components/Admin/Admin';
 
 function App() {
   return (
-    <div className="App container bg-dark">
+    <div className="bg-dark">
 
       <Router>
         
