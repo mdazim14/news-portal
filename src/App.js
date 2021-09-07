@@ -9,6 +9,7 @@ import {
   Link
 } from "react-router-dom";
 import Admin from './Components/Admin/Admin';
+import SingleModal from './Components/SingleNews/SingleModal';
 
 
 function App() {
@@ -26,6 +27,10 @@ function App() {
           </Route>
           <Route path="/admin">
             <Admin></Admin>
+          </Route>
+
+          <Route path="/news/:id">
+            <SingleModal></SingleModal>
           </Route>
 
         </Switch>
