@@ -8,12 +8,8 @@ import { Link } from "react-router-dom";
 const AllNews = () => {
 
     const { id } = useParams();
-
-
     const [news, setNews] = useState([]);
     console.log("state data", news)
-
-
 
     useEffect(() => {
         fetch('http://localhost:5000/News')
