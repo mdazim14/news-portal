@@ -11,18 +11,28 @@ import './Navber.css';
 const Navber = () => {
     return (
         <div>
-            <Navbar.Brand className="fs-1 fw-bold text-white" to="/">News Portal</Navbar.Brand>
+            <Navbar.Brand className="fs-1 fw-bold text-white d-block text-center" to="/">News Portal</Navbar.Brand>
 
             <Navbar className="fs-5 fw-bold text-white" collapseOnSelect expand="lg" bg="dark">
                 <Container>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="fs-5 border-bottom m-auto">
-                            <Link className=" m-2  link-light p-2" to="/">Home</Link>
-                            <Link className=" m-2  link-light p-2" to="/sports">Sports</Link>
-                            <Link className=" m-2  link-light p-2" to="/international">international</Link>
-                            <Link className=" m-2  link-light p-2" to="/contact">Contact</Link>
-                            <Link className=" m-2  link-light p-2" to="/admin">Admin</Link>
+                            <div>
+                                <Link className="link-light p-5" to="/">Home</Link>
+                            </div>
+                            <div>
+                                <Link className="link-light p-5" to="/sports">Sports</Link>
+                            </div>
+                            <div>
+                                <Link className="link-light p-5" to="/international">International</Link>
+                            </div>
+                            <div>
+                                <Link className="link-light p-5" to="/contact">Contact</Link>
+                            </div>
+                            <div>
+                                <Link className="link-warning p-5" to="/admin">Admin</Link>
+                            </div>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

@@ -6,10 +6,10 @@ import CarouselTOP from './Carousel/CarouselTOP';
 const Header = () => {
     return (
         <div className="d-flex">
-            <div className="m-2 col-1">
+            <div className="m-2 col-2">
                 <Sideber></Sideber>
             </div>
-            <div className="text-center">
+            <div className="text-center col-9">
                 <CarouselTOP></CarouselTOP>
                 <AllNews></AllNews>
             </div>

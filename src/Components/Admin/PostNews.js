@@ -9,10 +9,28 @@ const PostNews = () => {
     const history = useHistory();
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const handleSwitch = (e) => {
+        console.log("checked", e.target.checked);
+
+
+
+
+
+
+        //     setTopNews({ ...topNews, [event.target.name]: event.target.checked });
+        //     const isTopNews = {...info};
+        //     info.allNewsData[0][event.target.name] = event.target.checked;
+        //     setInfo(isTopNews);
+        //     console.log('anonna',info);
+
+
+
+    }
 
     const onSubmit = async (data) => {
         try {
             console.log("after submit", data);
+            console.log("image Link", data.file[0])
             const file = await convertToBase64(data.file[0])
             const res = await fetch('http://localhost:5000/addNews', {
                 method: 'POST',
@@ -22,6 +40,7 @@ const PostNews = () => {
                 body: JSON.stringify({ ...data, file })
             })
             const isPosted = await res.json()
+
             // console.log("is", isPosted);
             alert('The news added successfully')
             history.push('/');
@@ -49,21 +68,26 @@ const PostNews = () => {
 
     return (
         <div className="bg-dark text-white p-5">
-            <h5 className="bg-info text-dark border">This is Admin Panel for Post news.</h5>
+            <h5 className="p-2 text-uppercase text-center bg-warning text-dark border">This is Admin Panel for Post news.</h5>
             <div>
-                <form onSubmit={handleSubmit(onSubmit)}>
 
-                    <div className="d-flex justify-content-center">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div>
+                        <div className="py-3 form-check fs-5 form-switch">
+                            <input onClick={handleSwitch} className="form-check-input" type="checkbox" id="flexSwitchCheckDefault"/>
+                            <label className="form-check-label" for="flexSwitchCheckDefault">Top News</label>
+                        </div>
+                    </div>
+                    <div className="">
 
                         <div>
-                            <div className="p-5 border w-100">
+                            <div className="p-3 m-2 border">
                                 <h5>News Title:</h5>
                                 <input defaultValue="News Title" type="text" {...register("Title", { required: true })} />
                             </div>
-                            <div className="p-5 border">
-
+                            <div className="p-3 m-2 border">
                                 <h5>Choose Category</h5>
-                                <select className="border w-100 fs-5 fw-bold text-danger" {...register("Category", { required: true })}>
+                                <select className="border fs-5 fw-bold text-danger" {...register("Category", { required: true })}>
                                     <option>-</option>
                                     <option>Sports</option>
                                     <option>Health</option>
@@ -74,30 +98,29 @@ const PostNews = () => {
                                 </select>
                             </div>
                         </div>
-
                         <div>
-                            <div className="p-5 border">
+                            <div className="p-3 m-2 border">
                                 <h5>Select Image:</h5>
                                 <input type="file"  {...register("file", { required: true })} />
                                 {/* onChange={handleFileChange} */}
                             </div>
-                            <div className="p-5 border">
+                            <div className="p-3 m-2 border">
                                 <h5> Reporter Name:</h5>
                                 <input defaultValue="Name" type="text" {...register("reporterName", { required: true })} />
                             </div>
                         </div>
                     </div>
-
-                    <div className="d-flex ms-auto border">
-                        <div className="p-5 border w-100">
-                            <h5>Full Report:</h5>
-                            <textarea style={{ width: "500px" }} defaultValue="Full Report" type="text"{...register("fullReport", { required: true })} />
-                        </div>
+                    <div className="p-3 m-2 border">
+                        <h5>Full Report:</h5>
+                        <textarea style={{ width: "100%", height: "100px" }} defaultValue="Full Report" type="text"{...register("fullReport", { required: true })} />
                     </div>
 
-                    <button className="btn btn-primary m-5" type="submit" >
-                        Submit
-                    </button>
+                    <div className="text-center">
+                        <button className="btn fs-5 btn-primary m-5" type="submit" >
+                            Submit
+                        </button>
+                    </div>
+
 
                 </form>
             </div>

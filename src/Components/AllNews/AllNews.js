@@ -1,40 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
-import image1 from '../../Images/coverImg.png';
+// import image1 from '../../Images/coverImg.png';
 
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const AllNews = () => {
 
-    const { id } = useParams();
+    // const { id } = useParams();
     const [news, setNews] = useState([]);
-    console.log("state data", news)
+    // console.log("setNews data", news)
 
     useEffect(() => {
-        fetch('http://localhost:5000/News')
+        fetch('http://localhost:5000/getNews')
             .then(res => res.json())
             .then(data => {
-                // console.log("under then", data)
+                // console.log("after fetch", data)
                 setNews(data);
             })
     }, [])
 
 
     return (
-        <div className="text-white text-center">
-            <h1 className="p-5 m-5">ALL NEWS</h1>
+        <div className="text-white text-center border">
+            <h1 className="m-3">ALL NEWS</h1>
             <div className="d-flex justify-content-center">
 
                 <div className="d-flex flex-wrap m-3 text-dark border-5">
                     {
                         news.map(news => {
-                            const { Title, Description, _id } = news;
+                            const { Title, Description, _id, file } = news;
                             // console.log("id", _id);
                             return (
                                 <div className="">
                                     <Card style={{ width: '18rem', height: '30rem',  margin: '30px' }}>
-                                        <Card.Img style={{ height: '15rem' }} variant="top" className="w-100 img-fluid" src={image1} />
+                                        <Card.Img style={{ height: '15rem' }} variant="top" className="w-100 img-fluid" src={file} />
                                         <Card.Body>
                                             <Card.Title>{Title}</Card.Title>
                                             <div style={{ height: '7rem' }} >

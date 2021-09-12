@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
-import image1 from '../../Images/singleNews.jpg';
+// import image1 from '../../Images/singleNews.jpg';
 import { useParams } from "react-router-dom";
 
 
@@ -9,20 +9,21 @@ const SingleModal = () => {
     const { id } = useParams();
 
     const [NewsData, setNewsData] = useState([]);
+    console.log("setNewsData sd", NewsData);
 
     useEffect(() => {
-        fetch('http://localhost:5000/News')
+        fetch('http://localhost:5000/getNews')
             .then(res => res.json())
             .then(data => {
-                // console.log("under then llll", data)
+                // console.log("after fetch from sd", data)
                 const singleData = data.find(element => element._id === id);
-                console.log("singleData finding", singleData)
+                // console.log("singleData finding", singleData)
                 setNewsData(singleData);
 
             })
     }, [id])
 
-    const { Title, created, ReporterName, Category } = NewsData;
+    const { Title, created, ReporterName, Category, file } = NewsData;
 
     //Need to explore with id post get 
     // useEffect(() => {
@@ -35,14 +36,13 @@ const SingleModal = () => {
     //         })
     // }, [id])
 
-
     return (
         <div className="text-white text-center">
             <h1>Single News</h1>
             <div className="border">
                 <div className="text-dark d-inline-block">
                     <Card style={{ width: '80rem', height: '60rem' }}>
-                        <Card.Img style={{ height: '30rem', padding: '10px' }} variant="top" className="w-100 img-fluid" src={image1} />
+                        <Card.Img style={{ height: '30rem', padding: '10px' }} variant="top" className="w-100 img-fluid" src={file} />
                         <Card.Body>
                             <Card.Title>
                                 <h1>{Title}</h1>
