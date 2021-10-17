@@ -23,7 +23,7 @@ const AllNews = () => {
 
     return (
         <div className="text-white text-center border">
-            <h1 className="m-3">ALL NEWS</h1>
+            <h1 className="m-3">All news test</h1>
             <div className="d-flex justify-content-center">
 
                 <div className="d-flex flex-wrap m-3 text-dark border-5">

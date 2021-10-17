@@ -9,26 +9,18 @@ const PostNews = () => {
     const history = useHistory();
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const [info, setInfo] = useState(false);
+    // console.log("infoTop", info)
+
     const handleSwitch = (e) => {
-        console.log("checked", e.target.checked);
-
-
-
-
-
-
-        //     setTopNews({ ...topNews, [event.target.name]: event.target.checked });
-        //     const isTopNews = {...info};
-        //     info.allNewsData[0][event.target.name] = event.target.checked;
-        //     setInfo(isTopNews);
-        //     console.log('anonna',info);
-
-
-
+        const isChecked = e.target.checked;
+        setInfo(e.target.checked);
     }
 
     const onSubmit = async (data) => {
         try {
+            const isCheckedTrue = info;
+            data['topNewsChecked'] = isCheckedTrue;
             console.log("after submit", data);
             console.log("image Link", data.file[0])
             const file = await convertToBase64(data.file[0])
@@ -37,11 +29,11 @@ const PostNews = () => {
                 headers: {
                     'Content-type': 'application/json'
                 },
-                body: JSON.stringify({ ...data, file })
+                body: JSON.stringify({ ...data, file, info })
             })
             const isPosted = await res.json()
 
-            // console.log("is", isPosted);
+            console.log("isPosted", isPosted);
             alert('The news added successfully')
             history.push('/');
 
@@ -70,14 +62,15 @@ const PostNews = () => {
         <div className="bg-dark text-white p-5">
             <h5 className="p-2 text-uppercase text-center bg-warning text-dark border">This is Admin Panel for Post news.</h5>
             <div>
+                <div>
+                    <div className="py-3 form-check fs-5 form-switch">
+                        <input onClick={handleSwitch} className="form-check-input" name="checkbox" type="checkbox" id="flexSwitchCheckDefault" />
+                        <label className="form-check-label" for="flexSwitchCheckDefault">Top News</label>
+                    </div>
+                </div>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div>
-                        <div className="py-3 form-check fs-5 form-switch">
-                            <input onClick={handleSwitch} className="form-check-input" type="checkbox" id="flexSwitchCheckDefault"/>
-                            <label className="form-check-label" for="flexSwitchCheckDefault">Top News</label>
-                        </div>
-                    </div>
+
                     <div className="">
 
                         <div>
